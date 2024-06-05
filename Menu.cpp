@@ -4,6 +4,7 @@
 
 #include "Menu.h"
 #include "FileReader.h"
+#include "Algo.h"
 
 using namespace std;
 
@@ -43,6 +44,13 @@ void Menu::callMenu()
         case 3:
 
             g.print();
+            break;
+
+        case 4:
+
+            Algo::Prim_MST(g.matrix , 0);
+
+
             break;
         }
     

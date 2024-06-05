@@ -16,7 +16,6 @@ List::List(int v_num) : v_num(v_num)
     for (int i = 0; i < v_num; ++i)
     {
         this->al[i] = nullptr;
-        // al[i] = new Node(i, 0);
     }
 }
 
@@ -50,6 +49,25 @@ void List::addEdge(int start, int end, int weight)
         }
         tmp->next = new Node(start, weight);
     }
+}
+
+int List::get_edge_weight(int start, int end)
+{
+    Node *tmp = this->al[start];
+    while (tmp != nullptr)
+    {
+        if (tmp->vertex == end)
+        {
+            return tmp->weight;
+        }
+        tmp = tmp->next;
+    }
+    return -1; // edge does not exist
+}
+
+int List::get_vertices_num()
+{
+    return this->v_num;
 }
 
 void List::print()

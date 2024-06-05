@@ -18,10 +18,12 @@ class List : public GraphRep
 public:
     List();
     List(int v_num);
-    void print();
+    void print() override;
     Node **al;  //adjacency list
     int v_num;
     void addEdge(int start, int end, int weight);
+    int get_edge_weight(int start, int end) override;
+    int get_vertices_num() override;
 };
 
 
