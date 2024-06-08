@@ -1,5 +1,7 @@
 #include "List.h"
 #include <iostream>
+#include <climits>
+
 
 using namespace std;
 
@@ -68,6 +70,55 @@ int List::get_edge_weight(int start, int end)
 int List::get_vertices_num()
 {
     return this->v_num;
+}
+
+int* List::get_priority_queue_based_on_key(int start_vertex)
+{
+    int *arr = new int[this->v_num];
+    for (int i = 0; i < this->v_num; i++)
+    {
+        arr[i] = i;
+    }
+    int *key_array = new int[this->v_num];
+    for (int i = 0; i < this->v_num; i++)
+    {
+        key_array[i] = get_min_key(i);
+    }
+    key_array[start_vertex] = 0;
+
+    int i, j;
+    bool swapped;
+    for (i = 0; i < this->v_num - 1; i++)
+    {
+        swapped = false;
+        for (j = 0; j < this->v_num - i - 1; j++)
+        {
+            if (key_array[j] > key_array[j + 1])
+            {
+                swap(arr[j], arr[j + 1]);
+                swap(key_array[j], key_array[j + 1]);
+                swapped = true;
+            }
+        }
+        if (swapped == false)
+            break;
+    }
+    return arr;
+}
+
+int List::get_min_key(int vertex)
+{
+    Node *tmp = this->al[vertex];
+    int min = INT_MAX;
+    while (tmp != nullptr)
+    {
+        if (tmp->weight < min)
+        {
+            min = tmp->weight;
+        }
+        tmp = tmp->next;
+    }
+    return min;
 }
 
 void List::print()

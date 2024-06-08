@@ -1,50 +1,75 @@
 #include "Algo.h"
 
 #include <iostream>
-
-const int INF = 2147483647;
+#include <climits>
 
 using namespace std;
 
-void Algo::Prim_MST(GraphRep& g, int start_vertex)
+void Algo::Prim_MST(GraphRep &g, int start_vertex)
 {
+    // cout << g.get_edge_weight(0, 1) << endl;
+    // cout << g.get_edge_weight(0, 2) << endl;
+    // cout << g.get_edge_weight(1, 2) << endl;
+    // cout << g.get_edge_weight(1, 3) << endl;
+    // cout << g.get_edge_weight(2, 3) << endl;
+
     int v_num = g.get_vertices_num();
 
-    int *parent = new int[v_num];
-    int *key = new int[v_num];
-    bool *mst_set = new bool[v_num];
+    int parent[v_num];
+    int key[v_num];
+    bool in_mst[v_num];
 
-    for (int i = 0; i < v_num; ++i)
-        key[i] = INF, mst_set[i] = false;
-
+    for (int i = 0; i < v_num; i++)
+    {
+        key[i] = INT_MAX;
+        in_mst[i] = false;
+    }
 
     key[start_vertex] = 0;
     parent[start_vertex] = -1;
 
-    for (int i = 0; i < v_num - 1; i++) {
+    for (int i = 0; i < v_num; i++)
+    {
 
-        int u = min_key(key, mst_set, v_num);
-        mst_set[u] = true;
+        int u = min_key(key, in_mst, v_num);
 
-        for (int j = 0; j < v_num; j++)
+        in_mst[u] = true;
+
+        in_mst[u] = true;
+
+        int adj_arr[v_num];
+        for (int i = 0; i < v_num; i++)
         {
-            if (g.get_edge_weight(u, j) && mst_set[j] == false && g.get_edge_weight(u, j) < key[j])
+            adj_arr[i] = g.get_edge_weight(u, i);
+        }
+
+        for (int i = 0; i < v_num; i++)
+        {
+            if (adj_arr[i] <= 0 || i == u)
+                continue;
+
+            if (!in_mst[i] && adj_arr[i] < key[i])
             {
-                parent[j] = u;
-                key[j] = g.get_edge_weight(u, j);
+                key[i] = adj_arr[i];
+                parent[i] = u;
+                
             }
         }
     }
 
+    int sum = 0;
     for (int i = 1; i < v_num; i++)
     {
-        cout << parent[i] << " - " << i << " " << g.get_edge_weight(i, parent[i]) << endl;
+        int weight = g.get_edge_weight(parent[i], i);
+        cout << parent[i] << " - " << i << " \t" << weight << endl;
+        sum += weight;
     }
+    cout << "sum = " << sum << endl; 
 }
 
 int Algo::min_key(int *key, bool *mst_set, int v_num)
 {
-    int min = INF;
+    int min = INT_MAX;
     int min_index;
 
     for (int i = 0; i < v_num; i++)

@@ -5,15 +5,21 @@
 #include "Menu.h"
 #include "FileReader.h"
 #include "Algo.h"
+#include "MyTimer.h"
 
 using namespace std;
 
 void Menu::callMenu()
-{
+{   
     int choice;
     string fileName;
 
     Graph g;
+    FileReader fileReader;
+    MyTimer timer;
+
+    // TEMP
+    g = fileReader.readFile("data_in/data3.txt");
 
     while (true)
     {
@@ -22,9 +28,10 @@ void Menu::callMenu()
         cout << "3. Wyświetl graf listowo i macierzowo" << endl;
         cout << "4. Algorytm Prima" << endl;
         cout << "5. Algorytm Kruskala" << endl << endl;
-        
-        cin >> choice;
-
+        cout << "6. Wyjdz" << endl;
+        cout << "Wybierz opcje: ";
+        // cin >> choice, cout << endl;
+        choice = 4;
         switch (choice)
         {
         case 1:
@@ -32,10 +39,9 @@ void Menu::callMenu()
             cin >> fileName;
             
             if(fileName.length() < 2) {
-                fileName = "data_in/data1.txt";
+                fileName = "data_in/data2.txt";
             }
 
-            FileReader fileReader;
             g = fileReader.readFile(fileName);
 
             break;
@@ -48,12 +54,33 @@ void Menu::callMenu()
 
         case 4:
 
+            timer.startTimer();
+            cout << "Macierz: " << endl;
             Algo::Prim_MST(g.matrix , 0);
+            timer.stopTimer();
+            timer.printTime();
 
+            timer.startTimer();
+            cout << "Lista: " << endl;
+            Algo::Prim_MST(g.list, 0);
+            timer.stopTimer();
+            timer.printTime();
+
+            exit(0);
 
             break;
+        case 5:
+
+            break;
+        case 6:
+
+            
+            break;
+
+        default:
+            break;
         }
-    
+
 
     }
 }

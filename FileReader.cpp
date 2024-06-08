@@ -19,7 +19,8 @@ Graph FileReader::readFile(std::string fileName) {
     
     int** m = new int*[v_num];
     for (int i = 0; i < v_num; i++) {
-        m[i] = new int[e_num];
+        m[i] = new int[e_num]{0};
+
     }
 
     List l = List(v_num);
@@ -39,7 +40,7 @@ Graph FileReader::readFile(std::string fileName) {
         i++;
     }
 
-    g = Graph(Matrix(m, e_num, v_num), l);
+    g = Graph(Matrix(m, v_num, e_num), l);
 
 
     return g;
