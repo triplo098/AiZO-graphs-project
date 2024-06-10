@@ -24,5 +24,5 @@ void MyTimer::stopTimer()
 
 void MyTimer::printTime()
 {
-    printf("Elapsed time: %.4f ms\n", duration);
+    printf("Czas wykonania: %.4f ms\n", duration);
 }

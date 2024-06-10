@@ -21,7 +21,9 @@ public:
     void print() override;
     Node **al;  //adjacency list
     int v_num;
-    void addEdge(int start, int end, int weight);
+    int e_num;
+
+    void add_egde(int start, int end, int weight) override;    
     int get_edge_weight(int start, int end) override;
     int get_vertices_num() override;
     int get_min_key(int vertex) override;
