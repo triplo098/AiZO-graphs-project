@@ -8,7 +8,7 @@ Graph FileReader::readFile(std::string fileName) {
     
     Graph g;
  
-    std::ifstream file(fileName);
+    std::ifstream file("data_in/" + fileName);
     if (!file.is_open()) {
         std::cout << "Nie ma takiego pliku" << std::endl;
         return g;
@@ -31,6 +31,10 @@ Graph FileReader::readFile(std::string fileName) {
 
         l.add_egde(start, end, weight);
         m.add_egde(start, end, weight);
+        
+        // l.print();
+        // m.print();
+        
         i++;
     }
 

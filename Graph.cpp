@@ -94,6 +94,10 @@ Graph::Graph(int v_num, int density)
         // printf("Matrix e_num: %d\n", g.matrix.e_num);
     }
 
+    // g.print();
+
+
+    // this->matrix = Matrix(g.list);
     this->matrix = g.matrix;
     this->list = g.list;
 

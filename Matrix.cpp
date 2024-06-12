@@ -11,14 +11,14 @@ Matrix::Matrix()
     this->m = nullptr;
 }
 
-
-
 Matrix::Matrix(List l)
 {
+
+    l.print();
+    cout << "Matrix konstruktor z list" << endl;
     this->v_num = l.get_vertices_num();
     this->e_num = 0;
     this->m = nullptr;
-
 
     for (int i = 0; i < this->v_num; i++)
     {
@@ -44,6 +44,9 @@ Matrix::Matrix(int **m, int v_num, int e_num)
 
 void Matrix::add_egde(int start, int end, int weight)
 {
+
+    // cout << "start " << start << " end " << end << " weight " << weight << endl;
+
     if (this->e_num == 0 || this->m == nullptr)
     {
         this->m = new int *[this->v_num];
@@ -60,26 +63,69 @@ void Matrix::add_egde(int start, int end, int weight)
         return;
     }
 
-    if (start == end) {
+    if (start == end)
+    {
         return;
     }
 
     if (this->get_edge_weight(start, end) != 0)
         return;
 
-    this->e_num++;
+    e_num++;
 
     int **matrix = new int *[v_num];
+
     for (int i = 0; i < v_num; i++)
-    {   
-        matrix[i] = this->m[i];
+    {
+        matrix[i] = new int[e_num];
     }
+  
+    // for (int i = 0; i < v_num; i++)
+    // {   
+    //     matrix[i] = new int[e_num];
+    //     matrix[i] = m[i];
+
+    // }
+
+    // cout << "v_num " << v_num << endl;
+    // cout << "e_num " << e_num << endl;
+
+    for (int i = 0; i < v_num; i++)
+    { 
+        for (int j = 0; j < e_num - 1; j++)
+        {
+            matrix[i][j] = m[i][j];
+            // cout << "m[i][j]" << m[i][j] << " ";
+        }
+        // matrix[i] = m[i];
+    }
+
+    for (int i = 0; i < v_num; i++)
+        matrix[i][e_num - 1] = 0;
+
 
     matrix[start][e_num - 1] = weight;
     matrix[end][e_num - 1] = -weight;
 
-    this->m = matrix;
-    // this->print()   ;   
+
+    m = new int *[v_num];
+
+    for (int i = 0; i < v_num; i++)
+    {
+        m[i] = new int[e_num];
+    }
+
+    for (int i = 0; i < v_num; i++)
+    {
+        for (int j = 0; j < e_num; j++)
+        {
+            m[i][j] = matrix[i][j];
+        }
+    } 
+    // this->m = matrix;
+    // this->print();
+
+    delete[] matrix;
     // cout << "Edge added to matrix" << endl;
 }
 
@@ -92,8 +138,8 @@ int Matrix::get_edge_weight(int start, int end)
     for (int j = 0; j < e_num; ++j)
     {
 
-        int v1 = this->m[start][j]; // value 1
-        int v2 = this->m[end][j];   // value 2
+        int v1 = m[start][j]; // value 1
+        int v2 = m[end][j];   // value 2
 
         if (v1 == -v2 && v1 != 0)
         {
