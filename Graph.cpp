@@ -39,13 +39,18 @@ Graph::Graph(int v_num, int density)
         cout << "Za mała gęstość grafu" << endl;
         return;
     }
+    else if (density > 100)
+    {
+        cout << "Za duża gęstość grafu" << endl;
+        return;
+    }
 
     this->list = List(v_num);
 
     // Tworzenie grafu pełnego
     for(int i = 0; i < v_num; i++)
     {
-        for(int j = 0; j < v_num - 1; j++)
+        for(int j = i + 1; j < v_num; j++)
         {
             list.add_egde(i, j, (rand() % 100) + 1);
         }
@@ -56,19 +61,25 @@ Graph::Graph(int v_num, int density)
     //Uzyskanie MST
     Graph g = Algo::Prim_MST(list, 0, false);
     // g.list.print();
-    // cout << g.list.e_num << endl;
     // g.matrix.print();
+    // g.print();
+
+    // cout << g.list.e_num << endl;
+    // cout << e_num << endl;
     while (g.list.e_num < e_num)
     {
         
         int start = rand() % v_num;
         int end = rand() % v_num;
-        int weight = rand() % 100;
+        int weight = (rand() % 100) + 1;
+
+        // int start = 0;
+        // int end = 2;
+        // int weight = 87;
 
         if (start == end)
             continue;
-        if (g.list.get_edge_weight(start, end) > 0)
-            continue;
+        
 
         g.list.add_egde(start, end, weight);
         // g.list.print();

@@ -9,7 +9,7 @@ class Algo
 public:
     Graph static Prim_MST(GraphRep& g, int start_vertex, bool print_mst = true);
     int static min_key(int key[], bool in_mst[], int v_num);
-    void static Dijkstra(GraphRep& g, int start_vertex);
+    void static Dijkstra(GraphRep& g, int start_vertex, int end_vertex);
 };
 
 #endif

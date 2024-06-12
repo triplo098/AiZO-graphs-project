@@ -17,8 +17,6 @@ Graph FileReader::readFile(std::string fileName) {
     int e_num, v_num;
     file >> e_num >> v_num;
     
-    int** matrix;
-
     List l = List(v_num);
     Matrix m = Matrix(nullptr, v_num, e_num = 0);
 

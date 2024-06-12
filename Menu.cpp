@@ -81,13 +81,13 @@ void Menu::callMenu()
         case 5:
             timer.startTimer();
             cout << "Macierz: " << endl;
-            Algo::Dijkstra(g.matrix , 0);
+            Algo::Dijkstra(g.matrix , 0, 1);
             timer.stopTimer();
             timer.printTime();
 
             timer.startTimer();
             cout << "Lista: " << endl;
-            Algo::Dijkstra(g.list, 0);
+            Algo::Dijkstra(g.list, 0, 1);
             timer.stopTimer();
             timer.printTime();
             break; // Add break statement here

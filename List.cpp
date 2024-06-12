@@ -29,7 +29,7 @@ int List::get_edge_weight(int start, int end)
     {
         if (tmp->vertex == end)
         {
-            return tmp->weight;
+            return abs(tmp->weight);
         }
         tmp = tmp->next;
     }
@@ -46,9 +46,10 @@ void List::add_egde(int start, int end, int weight)
 
     if (start == end)
         return;
-    this->e_num++;
     if(this->get_edge_weight(start, end) != 0)
         return;
+
+    this->e_num++;
     
 
     if (this->al[start] == nullptr)
@@ -80,7 +81,7 @@ void List::add_egde(int start, int end, int weight)
         tmp->next = new Node(start, -weight);
     }
 
-
+    // cout << "Edge added to list" << endl;
 }
 
 int *List::get_priority_queue_based_on_key(int start_vertex)

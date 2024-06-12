@@ -62,6 +62,11 @@ void Matrix::add_egde(int start, int end, int weight)
         return;
     }
 
+    if (this->get_edge_weight(start, end) != 0)
+    {
+        return;
+    }
+
     this->e_num++;
 
     int **matrix = new int *[v_num];
@@ -75,16 +80,14 @@ void Matrix::add_egde(int start, int end, int weight)
 
     this->m = matrix;
 
-    // cout << "Edge added 1" << endl;
+    // cout << "Edge added to matrix" << endl;
 }
 
 int Matrix::get_edge_weight(int start, int end)
 {
 
     if (start == end)
-    {
         return 0;
-    }
 
     for (int j = 0; j < e_num; ++j)
     {
