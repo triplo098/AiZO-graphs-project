@@ -29,7 +29,7 @@ int List::get_edge_weight(int start, int end)
     {
         if (tmp->vertex == end)
         {
-            return abs(tmp->weight);
+            return tmp->weight;
         }
         tmp = tmp->next;
     }

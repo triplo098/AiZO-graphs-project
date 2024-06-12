@@ -52,7 +52,12 @@ void Menu::callMenu()
             cout << "Podaj gestosc grafu (w %): ";
             cin >> density;
 
-            g = Graph(v_num, density);
+            g.matrix.arrange_with_zeros();
+
+            g1 = Graph(v_num, density);
+            g1.print();
+            
+            g = g1;
 
             // g.print();
 
@@ -79,15 +84,23 @@ void Menu::callMenu()
             break;
 
         case 5:
+
+            cout << "Podaj wierzcholek startowy: ";
+            int start;
+            cin >> start;
+            cout << "Podaj wierzcholek koncowy: ";
+            int end;
+            cin >> end;
+
             timer.startTimer();
             cout << "Macierz: " << endl;
-            Algo::Dijkstra(g.matrix , 0, 1);
+            Algo::Dijkstra(g.matrix , start, end);
             timer.stopTimer();
             timer.printTime();
 
             timer.startTimer();
             cout << "Lista: " << endl;
-            Algo::Dijkstra(g.list, 0, 1);
+            Algo::Dijkstra(g.list, start, end);
             timer.stopTimer();
             timer.printTime();
             break; // Add break statement here

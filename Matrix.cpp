@@ -11,6 +11,8 @@ Matrix::Matrix()
     this->m = nullptr;
 }
 
+
+
 Matrix::Matrix(List l)
 {
     this->v_num = l.get_vertices_num();
@@ -63,15 +65,13 @@ void Matrix::add_egde(int start, int end, int weight)
     }
 
     if (this->get_edge_weight(start, end) != 0)
-    {
         return;
-    }
 
     this->e_num++;
 
     int **matrix = new int *[v_num];
     for (int i = 0; i < v_num; i++)
-    {
+    {   
         matrix[i] = this->m[i];
     }
 
@@ -79,7 +79,7 @@ void Matrix::add_egde(int start, int end, int weight)
     matrix[end][e_num - 1] = -weight;
 
     this->m = matrix;
-
+    // this->print()   ;   
     // cout << "Edge added to matrix" << endl;
 }
 
@@ -92,10 +92,10 @@ int Matrix::get_edge_weight(int start, int end)
     for (int j = 0; j < e_num; ++j)
     {
 
-        int v1 = abs(this->m[start][j]); // value 1
-        int v2 = abs(this->m[end][j]);   // value 2
+        int v1 = this->m[start][j]; // value 1
+        int v2 = this->m[end][j];   // value 2
 
-        if (v1 == v2 && v1 != 0)
+        if (v1 == -v2 && v1 != 0)
         {
             return v1;
         }
@@ -170,5 +170,16 @@ void Matrix::print()
             printf("%4d ", this->m[i][j]);
         }
         cout << endl;
+    }
+}
+
+void Matrix::arrange_with_zeros()
+{
+    for (int i = 0; i < this->v_num; i++)
+    {
+        for (int j = 0; j < this->e_num; j++)
+        {
+            this->m[i][j] = 0;
+        }
     }
 }

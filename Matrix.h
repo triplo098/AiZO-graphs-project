@@ -19,6 +19,7 @@ void add_egde(int start, int end, int weight) override;    int get_edge_weight(i
     int v_num;
     int e_num;
     int get_min_key(int vertex) override;
+    void arrange_with_zeros();
 };
 
 #endif

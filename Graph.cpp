@@ -17,6 +17,7 @@ Graph::Graph()
 
 Graph::~Graph()
 {
+    
 }
 
 void Graph::print()
@@ -27,10 +28,12 @@ void Graph::print()
 
 Graph::Graph(int v_num, int density)
 {   
+    
     srand (time(NULL));
 
     this->matrix = Matrix(nullptr, v_num, 0);
 
+    // this->matrix.print();
 
     int e_num = (v_num * (v_num - 1) / 2) * density / 100;
 
