@@ -13,9 +13,9 @@ int main(int argc, char *argv[])
         Menu menu;
         menu.callMenu();
     }
-    else if (argc == 2)
+    else if (argc == 6)
     {
-        ScriptRunner scriptRunner;
+        ScriptRunner scriptRunner(argc, argv);
         scriptRunner.runScript();
     }
     else

@@ -1,7 +1,13 @@
 #include "Graph.h"
 #include "Algo.h"
 
+
+
 #include <iostream>
+#include <set>
+#include <utility>
+#include <cstdlib>
+
 
 using namespace std;
 
@@ -55,10 +61,11 @@ Graph::Graph(int v_num, int density)
     {
         for(int j = i + 1; j < v_num; j++)
         {
-            list.add_egde(i, j, (rand() % 100) + 1);
+            list.add_edge(i, j, (rand() % 100) + 1);
         }
     }
 
+    // cout << "e_num: " << e_num << endl;
     // list.print();   
 
     //Uzyskanie MST
@@ -69,36 +76,54 @@ Graph::Graph(int v_num, int density)
 
     // cout << g.list.e_num << endl;
     // cout << e_num << endl;
-    while (g.list.e_num < e_num)
-    {
-        
+    
+    set<pair<int, int>> edge_set;
+
+    while (g.list.e_num < e_num) {
         int start = rand() % v_num;
         int end = rand() % v_num;
         int weight = (rand() % 100) + 1;
 
-        // int start = 0;
-        // int end = 2;
-        // int weight = 87;
-
-        if (start == end)
+        if (start == end || edge_set.find({start, end}) != edge_set.end() || edge_set.find({end, start}) != edge_set.end())
             continue;
+
+        edge_set.insert({start, end});
+        g.list.add_edge(start, end, weight);
+        // g.matrix.add_edge(start, end, weight);
+    }
+
+    // while (g.list.e_num < e_num)
+    // {
         
 
-        g.list.add_egde(start, end, weight);
-        // g.list.print();
-        // printf("List e_num: %d\n", g.list.e_num);
-        // if(g.matrix.e_num >=  g.list.e_num)
-        //     continue;
-        g.matrix.add_egde(start, end, weight);
-        // g.matrix.print();
-        // printf("Matrix e_num: %d\n", g.matrix.e_num);
-    }
+
+    //     int start = rand() % v_num;
+    //     int end = rand() % v_num;
+    //     int weight = (rand() % 100) + 1;
+
+    //     // int start = 0;
+    //     // int end = 2;
+    //     // int weight = 87;
+
+    //     if (start == end || g.list.get_edge_weight(start, end) != 0)
+    //         continue;
+        
+
+    //     g.list.add_edge(start, end, weight);
+    //     // g.list.print();
+    //     // printf("List e_num: %d\n", g.list.e_num);
+    //     // if(g.matrix.e_num >=  g.list.e_num)
+    //     //     continue;
+    //     g.matrix.add_edge(start, end, weight);
+    //     // g.matrix.print();
+    //     // printf("Matrix e_num: %d\n", g.matrix.e_num);
+    // }
 
     // g.print();
 
 
-    // this->matrix = Matrix(g.list);
-    this->matrix = g.matrix;
+    this->matrix = Matrix(g.list);
+    // this->matrix = g.matrix;
     this->list = g.list;
 
 }

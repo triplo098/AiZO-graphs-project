@@ -29,8 +29,8 @@ Graph FileReader::readFile(std::string fileName) {
         // m[start][i] = weight;
         // m[end][i]þ = -weight;
 
-        l.add_egde(start, end, weight);
-        m.add_egde(start, end, weight);
+        l.add_edge(start, end, weight);
+        m.add_edge(start, end, weight);
         
         // l.print();
         // m.print();

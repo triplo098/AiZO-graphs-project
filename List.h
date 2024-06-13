@@ -23,7 +23,7 @@ public:
     int v_num;
     int e_num;
 
-    void add_egde(int start, int end, int weight) override;    
+    void add_edge(int start, int end, int weight) override;    
     int get_edge_weight(int start, int end) override;
     int get_vertices_num() override;
     int get_min_key(int vertex) override;

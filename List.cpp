@@ -41,7 +41,7 @@ int List::get_vertices_num()
     return this->v_num;
 }
 
-void List::add_egde(int start, int end, int weight)
+void List::add_edge(int start, int end, int weight)
 {   
 
     if (start == end)

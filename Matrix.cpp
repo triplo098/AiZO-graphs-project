@@ -14,21 +14,80 @@ Matrix::Matrix()
 Matrix::Matrix(List l)
 {
 
-    l.print();
-    cout << "Matrix konstruktor z list" << endl;
-    this->v_num = l.get_vertices_num();
-    this->e_num = 0;
-    this->m = nullptr;
+    // l.print();
+    // cout << "Matrix konstruktor z list" << endl;
+    // this->v_num = l.get_vertices_num();
+    // this->e_num = 0;
+    // this->m = nullptr;
 
+    // for (int i = 0; i < this->v_num; i++)
+    // {
+    //     Node *tmp = l.al[i];
+    //     while (tmp != nullptr)
+    //     {
+    //         this->add_edge(i, tmp->vertex, tmp->weight);
+    //         tmp = tmp->next;
+    //     }
+    //     if (this->e_num == l.e_num)
+    //     {
+    //         break;
+    //     }
+    // }
+
+    this->v_num = l.v_num;
+    this->e_num = l.e_num;
+
+    this->m = new int *[this->v_num];
     for (int i = 0; i < this->v_num; i++)
     {
+        this->m[i] = new int[this->e_num]{0};
+    }
+
+
+    // for(int j = 0; j < this->e_num; j++)
+    // {
+    //     bool edge_found = false;
+    //     for (int i = 0; i < this->v_num; i++)
+    //     {
+         
+    //         for (int k = i + 1; k < this->v_num; k++)
+    //         {   
+    //             if (l.get_edge_weight(i, k) > 0)
+    //             {
+    //                 int weight = l.get_edge_weight(i, k);
+
+    //                 m[i][j] = weight;
+    //                 m[k][j] = -weight;
+
+    //                 edge_found = true;
+
+    //                 break;
+    //             }
+    //         }   
+    //         if (edge_found)
+    //             break;
+    //     }
+    // }
+
+    int edge_counter = 0;
+    for(int i = 0; i < this->v_num; i++)
+    {
         Node *tmp = l.al[i];
-        while (tmp != nullptr)
-        {
-            this->add_egde(i, tmp->vertex, tmp->weight);
+        while(tmp != nullptr)
+        {    
+
+            if (get_edge_weight(i, tmp->vertex) != 0)
+            {
+                tmp = tmp->next;
+                continue;
+            }
+            m[i][edge_counter] = tmp->weight;
+            m[tmp->vertex][edge_counter] = -tmp->weight;
+            edge_counter++;
             tmp = tmp->next;
         }
-        if (this->e_num == l.e_num)
+
+        if (edge_counter == this->e_num)
         {
             break;
         }
@@ -42,7 +101,7 @@ Matrix::Matrix(int **m, int v_num, int e_num)
     this->e_num = e_num;
 }
 
-void Matrix::add_egde(int start, int end, int weight)
+void Matrix::add_edge(int start, int end, int weight)
 {
 
     // cout << "start " << start << " end " << end << " weight " << weight << endl;
