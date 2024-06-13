@@ -1,0 +1,54 @@
+Algorithm: PRIM, Density: 25
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.000881 \\
+50 & 0.041057 \\
+100 & 0.337953 \\
+150 & 1.258308 \\
+200 & 2.874523 \\
+250 & 5.426099 \\
+300 & 10.775162 \\
+400 & 38.197063 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: PRIM, Density: 50
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001015 \\
+50 & 0.067002 \\
+100 & 0.631313 \\
+150 & 2.254510 \\
+200 & 7.124741 \\
+250 & 16.312849 \\
+300 & 27.271733 \\
+400 & 74.569082 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: PRIM, Density: 99
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.003042 \\
+50 & 0.103570 \\
+100 & 0.835154 \\
+150 & 4.064355 \\
+200 & 10.198710 \\
+250 & 20.887840 \\
+300 & 39.018103 \\
+400 & 109.406834 \\
+\bottomrule
+\end{tabular}
+
+
+

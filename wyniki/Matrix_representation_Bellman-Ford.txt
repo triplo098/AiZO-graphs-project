@@ -1,0 +1,54 @@
+Algorithm: Bellman-Ford, Density: 25
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.012453 \\
+50 & 0.886711 \\
+100 & 13.063637 \\
+150 & 65.032130 \\
+200 & 202.751880 \\
+250 & 491.201377 \\
+300 & 1005.108342 \\
+400 & 3187.626709 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Bellman-Ford, Density: 50
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.005030 \\
+50 & 1.540570 \\
+100 & 22.530415 \\
+150 & 111.427242 \\
+200 & 349.428738 \\
+250 & 839.781068 \\
+300 & 1722.308320 \\
+400 & 5553.773210 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Bellman-Ford, Density: 99
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.003821 \\
+50 & 2.158219 \\
+100 & 30.618038 \\
+150 & 152.049265 \\
+200 & 467.687610 \\
+250 & 1144.897094 \\
+300 & 2400.227937 \\
+400 & 7397.346581 \\
+\bottomrule
+\end{tabular}
+
+
+

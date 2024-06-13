@@ -1,0 +1,162 @@
+Algorithm: PRIM, Density: 25
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.000881 \\
+50 & 0.041057 \\
+100 & 0.337953 \\
+150 & 1.258308 \\
+200 & 2.874523 \\
+250 & 5.426099 \\
+300 & 10.775162 \\
+400 & 38.197063 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: PRIM, Density: 50
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001015 \\
+50 & 0.067002 \\
+100 & 0.631313 \\
+150 & 2.254510 \\
+200 & 7.124741 \\
+250 & 16.312849 \\
+300 & 27.271733 \\
+400 & 74.569082 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: PRIM, Density: 99
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.003042 \\
+50 & 0.103570 \\
+100 & 0.835154 \\
+150 & 4.064355 \\
+200 & 10.198710 \\
+250 & 20.887840 \\
+300 & 39.018103 \\
+400 & 109.406834 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Kruskal, Density: 25
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001492 \\
+50 & 0.202707 \\
+100 & 3.258290 \\
+150 & 16.290574 \\
+200 & 49.471862 \\
+250 & 118.802175 \\
+300 & 256.775339 \\
+400 & 792.066428 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Kruskal, Density: 50
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.002242 \\
+50 & 0.772528 \\
+100 & 12.300739 \\
+150 & 64.424967 \\
+200 & 203.410194 \\
+250 & 473.727413 \\
+300 & 965.821796 \\
+400 & 3166.891168 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Kruskal, Density: 99
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.007353 \\
+50 & 3.045057 \\
+100 & 47.431508 \\
+150 & 245.623446 \\
+200 & 744.177823 \\
+250 & 1849.353796 \\
+300 & 3947.608434 \\
+400 & 13605.783900 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Dijkstra, Density: 25
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001595 \\
+50 & 0.043678 \\
+100 & 0.376653 \\
+150 & 1.259431 \\
+200 & 2.984720 \\
+250 & 5.939165 \\
+300 & 10.621136 \\
+400 & 40.583698 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Dijkstra, Density: 50
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.000885 \\
+50 & 0.065008 \\
+100 & 0.652624 \\
+150 & 2.063026 \\
+200 & 7.511728 \\
+250 & 18.175057 \\
+300 & 27.119022 \\
+400 & 68.365315 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Dijkstra, Density: 99
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001225 \\
+50 & 0.114842 \\
+100 & 0.859063 \\
+150 & 4.057855 \\
+200 & 11.656426 \\
+250 & 21.527958 \\
+300 & 45.180896 \\
+400 & 101.762535 \\
+\bottomrule
+\end{tabular}
+
+
+

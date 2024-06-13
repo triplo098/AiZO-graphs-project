@@ -1,0 +1,360 @@
+Algorithm: Bellman-Ford, Representation: Matrix
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.012453 \\
+50 & 0.886711 \\
+100 & 13.063637 \\
+150 & 65.032130 \\
+200 & 202.751880 \\
+250 & 491.201377 \\
+300 & 1005.108342 \\
+400 & 3187.626709 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Bellman-Ford, Representation: List
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.000648 \\
+50 & 0.055747 \\
+100 & 0.446098 \\
+150 & 1.561841 \\
+200 & 3.740560 \\
+250 & 7.500376 \\
+300 & 13.643065 \\
+400 & 37.880262 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Dijkstra, Representation: Matrix
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.002853 \\
+50 & 1.796482 \\
+100 & 27.436665 \\
+150 & 133.157596 \\
+200 & 413.831232 \\
+250 & 972.013908 \\
+300 & 2058.625699 \\
+400 & 6429.417355 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Dijkstra, Representation: List
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001595 \\
+50 & 0.043678 \\
+100 & 0.376653 \\
+150 & 1.259431 \\
+200 & 2.984720 \\
+250 & 5.939165 \\
+300 & 10.621136 \\
+400 & 40.583698 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Bellman-Ford, Representation: Matrix
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.012453 \\
+50 & 0.886711 \\
+100 & 13.063637 \\
+150 & 65.032130 \\
+200 & 202.751880 \\
+250 & 491.201377 \\
+300 & 1005.108342 \\
+400 & 3187.626709 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Bellman-Ford, Representation: List
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.000648 \\
+50 & 0.055747 \\
+100 & 0.446098 \\
+150 & 1.561841 \\
+200 & 3.740560 \\
+250 & 7.500376 \\
+300 & 13.643065 \\
+400 & 37.880262 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Bellman-Ford, Representation: Matrix
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.012453 \\
+50 & 0.886711 \\
+100 & 13.063637 \\
+150 & 65.032130 \\
+200 & 202.751880 \\
+250 & 491.201377 \\
+300 & 1005.108342 \\
+400 & 3187.626709 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Bellman-Ford, Representation: List
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.000648 \\
+50 & 0.055747 \\
+100 & 0.446098 \\
+150 & 1.561841 \\
+200 & 3.740560 \\
+250 & 7.500376 \\
+300 & 13.643065 \\
+400 & 37.880262 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Dijkstra, Representation: Matrix
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.002853 \\
+50 & 1.796482 \\
+100 & 27.436665 \\
+150 & 133.157596 \\
+200 & 413.831232 \\
+250 & 972.013908 \\
+300 & 2058.625699 \\
+400 & 6429.417355 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Dijkstra, Representation: List
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001595 \\
+50 & 0.043678 \\
+100 & 0.376653 \\
+150 & 1.259431 \\
+200 & 2.984720 \\
+250 & 5.939165 \\
+300 & 10.621136 \\
+400 & 40.583698 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Kruskal, Representation: Matrix
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001775 \\
+50 & 1.084983 \\
+100 & 15.966142 \\
+150 & 83.017337 \\
+200 & 252.945256 \\
+250 & 622.353250 \\
+300 & 1272.381766 \\
+400 & 3982.022749 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Kruskal, Representation: List
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001492 \\
+50 & 0.202707 \\
+100 & 3.258290 \\
+150 & 16.290574 \\
+200 & 49.471862 \\
+250 & 118.802175 \\
+300 & 256.775339 \\
+400 & 792.066428 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Bellman-Ford, Representation: Matrix
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.012453 \\
+50 & 0.886711 \\
+100 & 13.063637 \\
+150 & 65.032130 \\
+200 & 202.751880 \\
+250 & 491.201377 \\
+300 & 1005.108342 \\
+400 & 3187.626709 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Bellman-Ford, Representation: List
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.000648 \\
+50 & 0.055747 \\
+100 & 0.446098 \\
+150 & 1.561841 \\
+200 & 3.740560 \\
+250 & 7.500376 \\
+300 & 13.643065 \\
+400 & 37.880262 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Dijkstra, Representation: Matrix
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.002853 \\
+50 & 1.796482 \\
+100 & 27.436665 \\
+150 & 133.157596 \\
+200 & 413.831232 \\
+250 & 972.013908 \\
+300 & 2058.625699 \\
+400 & 6429.417355 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Dijkstra, Representation: List
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001595 \\
+50 & 0.043678 \\
+100 & 0.376653 \\
+150 & 1.259431 \\
+200 & 2.984720 \\
+250 & 5.939165 \\
+300 & 10.621136 \\
+400 & 40.583698 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Bellman-Ford, Representation: Matrix
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.012453 \\
+50 & 0.886711 \\
+100 & 13.063637 \\
+150 & 65.032130 \\
+200 & 202.751880 \\
+250 & 491.201377 \\
+300 & 1005.108342 \\
+400 & 3187.626709 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Bellman-Ford, Representation: List
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.000648 \\
+50 & 0.055747 \\
+100 & 0.446098 \\
+150 & 1.561841 \\
+200 & 3.740560 \\
+250 & 7.500376 \\
+300 & 13.643065 \\
+400 & 37.880262 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Dijkstra, Representation: Matrix
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.002853 \\
+50 & 1.796482 \\
+100 & 27.436665 \\
+150 & 133.157596 \\
+200 & 413.831232 \\
+250 & 972.013908 \\
+300 & 2058.625699 \\
+400 & 6429.417355 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Dijkstra, Representation: List
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001595 \\
+50 & 0.043678 \\
+100 & 0.376653 \\
+150 & 1.259431 \\
+200 & 2.984720 \\
+250 & 5.939165 \\
+300 & 10.621136 \\
+400 & 40.583698 \\
+\bottomrule
+\end{tabular}
+
+
+

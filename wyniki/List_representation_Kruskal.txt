@@ -1,0 +1,54 @@
+Algorithm: Kruskal, Density: 25
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.001492 \\
+50 & 0.202707 \\
+100 & 3.258290 \\
+150 & 16.290574 \\
+200 & 49.471862 \\
+250 & 118.802175 \\
+300 & 256.775339 \\
+400 & 792.066428 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Kruskal, Density: 50
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.002242 \\
+50 & 0.772528 \\
+100 & 12.300739 \\
+150 & 64.424967 \\
+200 & 203.410194 \\
+250 & 473.727413 \\
+300 & 965.821796 \\
+400 & 3166.891168 \\
+\bottomrule
+\end{tabular}
+
+
+
+Algorithm: Kruskal, Density: 99
+\begin{tabular}{rr}
+\toprule
+Vertices & Time \\
+\midrule
+10 & 0.007353 \\
+50 & 3.045057 \\
+100 & 47.431508 \\
+150 & 245.623446 \\
+200 & 744.177823 \\
+250 & 1849.353796 \\
+300 & 3947.608434 \\
+400 & 13605.783900 \\
+\bottomrule
+\end{tabular}
+
+
+

@@ -241,6 +241,7 @@ Graph Algo::Kruskal_MST(GraphRep &g, int start_vertex, bool print_mst) {
     List l = List(v_num);
     // Matrix m = Matrix(nullptr, v_num, e_num = 0);
 
+    int sum = 0;
     int i = 0;
     while (i < e_num)
     {
@@ -260,6 +261,13 @@ Graph Algo::Kruskal_MST(GraphRep &g, int start_vertex, bool print_mst) {
             // mst_edges[edges_counter].src = next_edge.src;
             // mst_edges[edges_counter].weight = next_edge.weight;
             edges_counter++;
+            sum += next_edge.weight;
+
+            if(print_mst)
+                cout << next_edge.src << " - " << next_edge.dest << " \t" << next_edge.weight << endl;
+            
+            if (edges_counter == v_num - 1)
+                break;
         }
 
         i++;
@@ -275,7 +283,8 @@ Graph Algo::Kruskal_MST(GraphRep &g, int start_vertex, bool print_mst) {
     }
     else
     {   
-        l.print();
+        cout << "sum = " << sum << endl;
+        // l.print();
         // int sum = 0;
         // for (int i = 0; i < v_num - 1; i++)
         // {
@@ -308,3 +317,84 @@ void Algo::union_set(int u, int v, int *parent, int v_num) {
 }
 
 
+void Algo::Bellman_Ford(GraphRep &g, int start_vertex, int end_vertex, bool print_sp)
+{
+    int v_num = g.get_vertices_num();
+    int e_num = g.get_edges_num();
+
+    int d[v_num];
+    int p[v_num];
+    Edge *edges = new Edge[e_num];
+
+
+    int edge_index = 0;
+    for (int i = 0; i < v_num; i++)
+    {
+        for (int j = i + 1; j < v_num; j++)
+        {   
+            int weight = g.get_edge_weight(i, j);
+            if (i == j || weight <  0)
+                continue;
+            if (weight > 0)
+            {
+                edges[edge_index].src = i;
+                edges[edge_index].dest = j;
+                edges[edge_index].weight = weight;
+                edge_index++;
+            }
+        }
+    }
+
+    for (int i = 0; i < v_num; i++)
+    {
+        d[i] = INT_MAX;
+        p[i] = -1;
+    }
+
+    d[start_vertex] = 0;
+
+    for (int i = 0; i < v_num - 1; i++)
+    {
+        for (int j = 0; j < e_num; j++)
+        {
+            int u = edges[j].src;
+            int v = edges[j].dest;
+            int weight = edges[j].weight;
+
+
+            if(weight < 0 || u == v)
+                continue;
+
+            if (d[u] != INT_MAX && d[u] + weight < d[v])
+            {
+                d[v] = d[u] + weight;
+                p[v] = u;
+            }
+        }   
+    }
+
+    for (int j = 0; j < e_num; j++)
+    {
+        int u = edges[j].src;
+        int v = edges[j].dest;
+        int weight = edges[j].weight;
+
+        if (d[u] != INT_MAX && d[u] + weight < d[v])
+        {
+            cout << "Graf zawiera ujemny cykl" << endl;
+            return;
+        }
+    }
+
+    if (!print_sp)
+        return;
+
+    cout << "Najkrótsza ścieżka z " << start_vertex << " do " << end_vertex << " wynosi: " << d[end_vertex] << endl;
+    cout << "Ścieżka: ";
+
+    for (int i = end_vertex; i != -1; i = p[i])
+    {
+        cout << " " << i;
+    }
+    cout << endl;
+}

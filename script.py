@@ -23,12 +23,12 @@ rep_dict = {
 # density = [35]
 # number_of_samples = [50]
 
-# vertices = [10, 50, 100, 125, 150, 200, 250]
 density = [25, 50, 99]
-number_of_samples = [50]
+number_of_samples = [25]
 
 
 vertices = [10, 50, 100, 150, 200, 250, 300, 400]
+# vertices = [10, 50, 100, 125, 150, 200, 250]
 
 
 
@@ -69,24 +69,13 @@ def collect_data():
 
 
 def generate_plot_type_1():
-    df = pd.read_csv("wyniki.csv")
     
-    # List of unique representations
-    representations = df['Representation'].unique()
-    
-    # List of unique algorithms
-    # algorithms = df['Algorithm'].unique()
-    algorithms = ['PRIM', 'Kruskal']
-    
-    # List of unique densities
-    densities = df['Density'].unique()
-
     # Iterate over each representation
     for representation in representations:
         plt.figure(figsize=(10, 6))
-        plt.title(f'Time vs Vertices for {representation} Representation')
-        plt.xlabel('Number of Vertices')
-        plt.ylabel('Time (ms)')
+        plt.title(f'Funkcja t(v) dla reprezntacji {representation}')
+        plt.xlabel('Ilość wierzchołków')
+        plt.ylabel('Czas (ms)')
         
         # Filter the dataframe by representation
         df_rep = df[df['Representation'] == representation]
@@ -96,8 +85,26 @@ def generate_plot_type_1():
             for density in densities:
                 df_filtered = df_rep[(df_rep['Algorithm'] == algorithm) & (df_rep['Density'] == density)]
                 if not df_filtered.empty:
+
+                    # print(df_filtered['Vertices'].values)
+                    # print(df_filtered['Time'].values)
+                    
+                    my_data = {
+                        "Vertices": df_filtered['Vertices'].values,
+                        "Time": df_filtered['Time'].values
+                    }
+                    data = pd.DataFrame(my_data)
+                    data.to_latex(index=False)
+
+                    with open(f"wyniki/{representation}_representation_{algorithm}.txt", "a") as file:
+                        file.write(f"Algorithm: {algorithm}, Density: {density}\n")
+                        file.write(data.to_latex(index=False))
+                        file.write("\n\n\n")
+
+                    
                     plt.plot(df_filtered['Vertices'].values, df_filtered['Time'].values, marker='o', label=f'{algorithm}, Density: {density}')
-                    plt.savefig(f"wyniki/{representation}_representation.png")
+                    plt.legend()
+                    plt.savefig(f"wyniki/{representation}_representation_{algorithm}.png")
         plt.legend()
         plt.grid(True)
         plt.tight_layout()
@@ -105,24 +112,14 @@ def generate_plot_type_1():
 
 
 def generate_plot_type_2():
-    df = pd.read_csv("wyniki.csv")
-    
-    # List of unique representations
-    representations = df['Representation'].unique()
-    
-    # List of unique algorithms
-    algorithms = df['Algorithm'].unique()
-    
-    # List of unique densities
-    densities = df['Density'].unique()
-
+   
     # Iterate over each density for typ2
     for density in densities:
         plt.figure(figsize=(10, 6))
-        plt.title(f'Time vs Vertices for Density {density} (Typ2)')
-        plt.xlabel('Number of Vertices')
-        plt.ylabel('Time (ms)')
-        
+        plt.title(f'Funkcja t(v) dla gęstości {density}')
+        plt.xlabel('Ilość wierzchołków')
+        plt.ylabel('Czas (ms)')
+
         # Filter the dataframe by density
         df_density = df[df['Density'] == density]
         
@@ -131,15 +128,45 @@ def generate_plot_type_2():
             for representation in representations:
                 df_filtered = df_density[(df_density['Algorithm'] == algorithm) & (df_density['Representation'] == representation)]
                 if not df_filtered.empty:
+
+
+                    my_data = {
+                        "Vertices": df_filtered['Vertices'].values,
+                        "Time": df_filtered['Time'].values
+                    }
+                    data = pd.DataFrame(my_data)
+                    data.to_latex(index=False)
+
+                    with open(f"wyniki/Typ2_density_{density}_MST.txt", "a") as file:
+                        file.write(f"Algorithm: {algorithm}, Representation: {representation}\n")
+                        file.write(data.to_latex(index=False))
+                        file.write("\n\n\n")
+
+
                     plt.plot(df_filtered['Vertices'].values, df_filtered['Time'].values, marker='o', label=f'{algorithm}, {representation}')
-                    plt.savefig(f"wyniki/Typ2_density_{density}.png")
+                    plt.legend()
+                    plt.savefig(f"wyniki/Typ2_density_{density}_SHORT.png")
         plt.legend()
         plt.grid(True)
         plt.tight_layout()
         plt.show()
         
 
-# collect_data()
+df = pd.read_csv("wyniki.csv")
+    
+# List of unique representations
+representations = df['Representation'].unique()
 
-generate_plot_type_1()
-# generate_plot_type_2()
+# List of unique algorithms
+algorithms = df['Algorithm'].unique()
+algorithms = ['Bellman-Ford', 'Dijkstra']
+# algorithms = ['PRIM', 'Kruskal']
+
+# List of unique densities
+densities = df['Density'].unique()
+
+
+
+# collect_data()
+# generate_plot_type_1()
+generate_plot_type_2()

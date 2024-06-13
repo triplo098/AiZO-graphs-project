@@ -100,6 +100,23 @@ void ScriptRunner::runScript()
 
             timer.sum += timer.duration;
         }
+        else if (par[0] == BELLMAN_FORD)
+        {
+            if (par[1] == MATRIX)
+            {
+                timer.startTimer();
+                Algo::Bellman_Ford(g.matrix, 0, 1, false);
+                timer.stopTimer();
+            }
+            else if (par[1] == LIST)
+            {
+                timer.startTimer();
+                Algo::Bellman_Ford(g.list, 0, 1, false);
+                timer.stopTimer();
+            }
+
+            timer.sum += timer.duration;
+        }
         
     }
     // for (int i = 0; i < 4; i++)
