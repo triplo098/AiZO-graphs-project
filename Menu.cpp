@@ -40,8 +40,8 @@ void Menu::callMenu()
 
             if (fileName.length() < 2)
             {
-                // fileName = "data_in/data2.txt";
-                fileName = "data5.txt";
+                fileName = "data2.txt";
+                // fileName = "data5.txt";
             }
 
             g = fileReader.readFile(fileName);

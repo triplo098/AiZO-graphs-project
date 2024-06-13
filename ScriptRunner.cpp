@@ -8,6 +8,8 @@
 
 #define PRIM 0
 #define DJISKTRA 1
+#define KRUSKAL 2
+#define BELLMAN_FORD 3
 
 #define MATRIX 0
 #define LIST 1
@@ -81,12 +83,30 @@ void ScriptRunner::runScript()
 
             timer.sum += timer.duration;
         }
+        else if (par[0] == KRUSKAL)
+        {
+            if (par[1] == MATRIX)
+            {
+                timer.startTimer();
+                Algo::Kruskal_MST(g.matrix, 0, false);
+                timer.stopTimer();
+            }
+            else if (par[1] == LIST)
+            {
+                timer.startTimer();
+                Algo::Kruskal_MST(g.list, 0, false);
+                timer.stopTimer();
+            }
+
+            timer.sum += timer.duration;
+        }
+        
     }
     // for (int i = 0; i < 4; i++)
     // {
     //     cout << "par[" << i << "] = " << par[i] << endl;
     // }
     
-    printf("czas: %.17g \n", (timer.sum / par[4]));
+    printf("czas: %.10g \n", (timer.sum / par[4]));
     return;
 }

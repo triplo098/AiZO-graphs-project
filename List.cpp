@@ -22,6 +22,11 @@ List::List(int v_num) : v_num(v_num)
     }
 }
 
+int List::get_edges_num()
+{
+    return this->e_num;
+}
+
 int List::get_edge_weight(int start, int end)
 {
     Node *tmp = this->al[start];

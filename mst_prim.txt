@@ -1,0 +1,33 @@
+MST-PRIM(G, w,r)
+for each u € G.V
+
+ 
+
+ 
+
+GV
+
+1
+
+2
+
+3
+
+4
+
+5 0 .
+
+6 whileQ 46
+7 u = EXTRACT-MIN(Q)
+
+8 for each v € G.Adj[u]
+
+9 if v € Q and w(u,v) < v.key
+0 vam=u
+
+1 vik
+
+wu, v)
+
+ 
+

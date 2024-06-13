@@ -263,6 +263,11 @@ int Matrix::get_vertices_num()
     return this->v_num;
 }
 
+int Matrix::get_edges_num()
+{
+    return this->e_num;
+}
+
 void Matrix::print()
 {
     cout << "Matrix: " << endl;

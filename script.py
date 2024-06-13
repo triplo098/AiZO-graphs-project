@@ -10,6 +10,8 @@ import itertools
 algo_dict = {
     0: "PRIM",
     1: "Dijkstra",
+    2: "Kruskal",
+    3: "Bellman-Ford"
 }
 
 rep_dict = {
@@ -21,12 +23,12 @@ rep_dict = {
 # density = [35]
 # number_of_samples = [50]
 
-vertices = [10, 50, 100, 125, 150, 200, 250]
+# vertices = [10, 50, 100, 125, 150, 200, 250]
 density = [25, 50, 99]
 number_of_samples = [50]
 
 
-# vertices = [10, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
+vertices = [10, 50, 100, 150, 200, 250, 300, 400]
 
 
 
@@ -41,8 +43,10 @@ def collect_data():
         run_process = subprocess.Popen(
             ["./main"] + [str(i) for i in my_args], stdout=subprocess.PIPE
         )
-
+        
         output = run_process.stdout.read().decode("utf-8")
+        
+
         time = float(output.split(": ")[1])
         print(time)
 
@@ -71,7 +75,8 @@ def generate_plot_type_1():
     representations = df['Representation'].unique()
     
     # List of unique algorithms
-    algorithms = df['Algorithm'].unique()
+    # algorithms = df['Algorithm'].unique()
+    algorithms = ['PRIM', 'Kruskal']
     
     # List of unique densities
     densities = df['Density'].unique()
@@ -80,8 +85,8 @@ def generate_plot_type_1():
     for representation in representations:
         plt.figure(figsize=(10, 6))
         plt.title(f'Time vs Vertices for {representation} Representation')
-        plt.xlabel('Time (ms)')
-        plt.ylabel('Number of Vertices')
+        plt.xlabel('Number of Vertices')
+        plt.ylabel('Time (ms)')
         
         # Filter the dataframe by representation
         df_rep = df[df['Representation'] == representation]
@@ -91,8 +96,8 @@ def generate_plot_type_1():
             for density in densities:
                 df_filtered = df_rep[(df_rep['Algorithm'] == algorithm) & (df_rep['Density'] == density)]
                 if not df_filtered.empty:
-                    plt.plot(df_filtered['Time'].values, df_filtered['Vertices'].values, marker='o', label=f'{algorithm}, Density: {density}')
-        
+                    plt.plot(df_filtered['Vertices'].values, df_filtered['Time'].values, marker='o', label=f'{algorithm}, Density: {density}')
+                    plt.savefig(f"wyniki/{representation}_representation.png")
         plt.legend()
         plt.grid(True)
         plt.tight_layout()
@@ -127,11 +132,12 @@ def generate_plot_type_2():
                 df_filtered = df_density[(df_density['Algorithm'] == algorithm) & (df_density['Representation'] == representation)]
                 if not df_filtered.empty:
                     plt.plot(df_filtered['Vertices'].values, df_filtered['Time'].values, marker='o', label=f'{algorithm}, {representation}')
-        
+                    plt.savefig(f"wyniki/Typ2_density_{density}.png")
         plt.legend()
         plt.grid(True)
         plt.tight_layout()
         plt.show()
+        
 
 # collect_data()
 

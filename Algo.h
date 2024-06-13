@@ -12,7 +12,8 @@ public:
     int static min_key(int key[], bool in_mst[], int v_num);
     void static Dijkstra(GraphRep& g, int start_vertex, int end_vertex, bool print_sp = true);
     int static find(int *parent, int i);
-    void static union_set(int *parent, int *rank, int min_index_1, int min_index_2);
+    int static min_weight(GraphRep &g, int vertex);
+    void static union_set(int u, int v,int *parent, int v_num);
 };
 
 #endif

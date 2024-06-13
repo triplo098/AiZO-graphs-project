@@ -107,6 +107,23 @@ int Algo::min_key(int *key, bool *mst_set, int v_num)
     return min_index;
 }
 
+int Algo::min_weight(GraphRep &g, int vertex)
+{
+    int v_num = g.get_vertices_num();
+    int min = INT_MAX;
+
+    for (int i = 0; i < v_num; i++)
+    {
+        int weight = abs(g.get_edge_weight(vertex, i));
+        if (weight < min && weight > 0)
+        {
+            min = weight;
+        }
+    }
+
+    return min;
+}
+
 void Algo::Dijkstra(GraphRep &g, int start_vertex, int end_vertex, bool print_sp)
 {
 
@@ -166,91 +183,127 @@ void Algo::Dijkstra(GraphRep &g, int start_vertex, int end_vertex, bool print_sp
 
 }
 
+// Do algorytmu Kruskala
+struct Edge {
+    int src, dest, weight;
+    
+};
 
 Graph Algo::Kruskal_MST(GraphRep &g, int start_vertex, bool print_mst) {
+
     int v_num = g.get_vertices_num();
-    int e_num = 0;
+    int e_num = g.get_edges_num();
 
-    int parent[v_num];
-    int rank[v_num];
+    Edge *edges = new Edge[e_num];
 
-    for (int i = 0; i < v_num; i++) {
+    Edge *mst_edges = new Edge[v_num - 1];
+
+    int edge_index = 0;
+    for (int i = 0; i < v_num; i++)
+    {
+        for (int j = i + 1; j < v_num; j++)
+        {
+            int weight = abs(g.get_edge_weight(i, j));
+            if (weight > 0)
+            {
+                edges[edge_index].src = i;
+                edges[edge_index].dest = j;
+                edges[edge_index].weight = weight;
+                edge_index++;
+            }
+        }
+    }
+
+    
+
+    for (int i = 0; i < e_num; i++)
+    {
+        for (int j = 0; j < e_num - i - 1; j++)
+        {
+            if (edges[j].weight > edges[j + 1].weight)
+            {
+                swap(edges[j], edges[j + 1]);
+            }
+        }
+    }
+
+    // for(int i = 0; i < e_num; i++)
+    //     cout << edges[i].src << " " << edges[i].dest << " " << edges[i].weight << endl;
+
+
+    int *parent = new int[v_num];
+
+    for (int i = 0; i < v_num; i++)
         parent[i] = i;
-        rank[i] = 0;
-    }
 
-    int edges_count = 0;
-    int sum = 0;
-    List l(v_num);
+    int edges_counter = 0;
 
-    while (edges_count < v_num - 1) {
+    List l = List(v_num);
+    // Matrix m = Matrix(nullptr, v_num, e_num = 0);
 
-        int min = INT_MAX;
-        int min_index_1 = -1;
-        int min_index_2 = -1;
+    int i = 0;
+    while (i < e_num)
+    {
+        Edge next_edge = edges[edges_counter];
+        int x = find(parent, next_edge.src);
+        int y = find(parent, next_edge.dest);
 
-        for (int i = 0; i < v_num; i++) {
-            for (int j = 0; j < v_num; j++) {
-                int weight = abs(g.get_edge_weight(i, j));
-                if (weight > 0 && find(parent, i) != find(parent, j) && weight < min) {
-                    min = weight;
-                    min_index_1 = i;
-                    min_index_2 = j;
-                }
-            }
+        // cout << "x = " << x << " y = " << y << endl;
+        // cout << "next_edge.src = " << next_edge.src << " next_edge.dest = " << next_edge.dest << " next_edge.weight = " << next_edge.weight << endl;
+
+        if (x != y)
+        {
+            l.add_edge(next_edge.src, next_edge.dest, next_edge.weight);
+            // m.add_edge(next_edge.src, next_edge.dest, next_edge.weight);
+            union_set(x, y, parent, v_num);
+            // mst_edges[edges_counter].dest = next_edge.dest;
+            // mst_edges[edges_counter].src = next_edge.src;
+            // mst_edges[edges_counter].weight = next_edge.weight;
+            edges_counter++;
         }
 
-        if (min_index_1 != -1 && min_index_2 != -1) {
-            union_set(parent, rank, min_index_1, min_index_2);
-            l.add_edge(min_index_1, min_index_2, min);
-            sum += min;
-            edges_count++;
-        } 
+        i++;
+    }
 
 
+    if (!print_mst)
+    {   
+        // delete [] parent;
+        // delete [] edges;
+        // delete [] mst_edges;
+        return Graph(Matrix(nullptr, v_num, e_num = 0), List(v_num));
+    }
+    else
+    {   
         l.print();
-    }
-
-    if (!print_mst) {
-        return Graph( Matrix(), List(v_num));  // Return an empty graph
-    } else {
-        cout << "sum = " << sum << endl;
-        for (int i = 0; i < v_num; i++) {
-            if (parent[i] != i) {
-                int weight = abs(g.get_edge_weight(parent[i], i));
-                cout << parent[i] << " - " << i << " \t" << weight << endl;
-            }
-        }
+        // int sum = 0;
+        // for (int i = 0; i < v_num - 1; i++)
+        // {
+        //     cout << mst_edges[i].src << " - " << mst_edges[i].dest << " \t" << mst_edges[i].weight << endl;
+        //     sum += mst_edges[i].weight;
+        // }
+        // cout << "sum = " << sum << endl;
+        // delete [] parent;
+        // delete [] edges;
+        
+        // delete [] mst_edges;
         return Graph(Matrix(l), l);
     }
+
+
 }
 
 int Algo::find(int *parent, int i)
 {
-    if (parent[i] != i)
-    {
-        parent[i] = find(parent, parent[i]);
-    }
     return parent[i];
 }
 
-void Algo::union_set(int *parent, int *rank, int x, int y)
-{
-    int x_root = find(parent, x);
-    int y_root = find(parent, y);
-
-    if (rank[x_root] < rank[y_root])
+void Algo::union_set(int u, int v, int *parent, int v_num) {
+    for(int i = 0; i < v_num; i++)
     {
-        parent[x_root] = y_root;
-    }
-    else if (rank[x_root] > rank[y_root])
-    {
-        parent[y_root] = x_root;
-    }
-    else
-    {
-        parent[y_root] = x_root;
-        rank[x_root]++;
+        if(parent[i] == parent[v])
+            parent[v] = parent[u];
+            
     }
 }
 
