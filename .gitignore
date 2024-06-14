@@ -32,3 +32,5 @@
 *.app
 
 /temp
+/wyniki
+/__pycache__
