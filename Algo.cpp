@@ -132,6 +132,12 @@ void Algo::Dijkstra(GraphRep &g, int start_vertex, int end_vertex, bool print_sp
     int p[v_num];
     bool spt_set[v_num];
 
+    if(end_vertex >= v_num)
+    {
+        cout << "Nie ma takiego wierzchołka" << endl;
+        return;
+    }
+
     for (int i = 0; i < v_num; i++)
     {
         d[i] = INT_MAX;
@@ -178,18 +184,16 @@ void Algo::Dijkstra(GraphRep &g, int start_vertex, int end_vertex, bool print_sp
         cout << " " << i;
     }
     cout << endl;
-
-
-
 }
 
 // Do algorytmu Kruskala
-struct Edge {
+struct Edge
+{
     int src, dest, weight;
-    
 };
 
-Graph Algo::Kruskal_MST(GraphRep &g, int start_vertex, bool print_mst) {
+Graph Algo::Kruskal_MST(GraphRep &g, int start_vertex, bool print_mst)
+{
 
     int v_num = g.get_vertices_num();
     int e_num = g.get_edges_num();
@@ -201,20 +205,18 @@ Graph Algo::Kruskal_MST(GraphRep &g, int start_vertex, bool print_mst) {
     int edge_index = 0;
     for (int i = 0; i < v_num; i++)
     {
-        for (int j = i + 1; j < v_num; j++)
+        for (int j = 0; j < v_num; j++)
         {
-            int weight = abs(g.get_edge_weight(i, j));
+            int weight = g.get_edge_weight(i, j);
             if (weight > 0)
             {
                 edges[edge_index].src = i;
                 edges[edge_index].dest = j;
-                edges[edge_index].weight = weight;
+                edges[edge_index].weight = abs(weight);
                 edge_index++;
             }
         }
     }
-
-    
 
     for (int i = 0; i < e_num; i++)
     {
@@ -230,7 +232,6 @@ Graph Algo::Kruskal_MST(GraphRep &g, int start_vertex, bool print_mst) {
     // for(int i = 0; i < e_num; i++)
     //     cout << edges[i].src << " " << edges[i].dest << " " << edges[i].weight << endl;
 
-
     int *parent = new int[v_num];
 
     for (int i = 0; i < v_num; i++)
@@ -245,44 +246,43 @@ Graph Algo::Kruskal_MST(GraphRep &g, int start_vertex, bool print_mst) {
     int i = 0;
     while (i < e_num)
     {
-        Edge next_edge = edges[edges_counter];
-        int x = find(parent, next_edge.src);
-        int y = find(parent, next_edge.dest);
+        Edge next_edge = edges[i];
+        int x = find_set(parent, next_edge.src);
+        int y = find_set(parent, next_edge.dest);
 
         // cout << "x = " << x << " y = " << y << endl;
-        // cout << "next_edge.src = " << next_edge.src << " next_edge.dest = " << next_edge.dest << " next_edge.weight = " << next_edge.weight << endl;
+        // cout << next_edge.src << " " << next_edge.dest << " " << next_edge.weight << endl;
 
         if (x != y)
         {
             l.add_edge(next_edge.src, next_edge.dest, next_edge.weight);
             // m.add_edge(next_edge.src, next_edge.dest, next_edge.weight);
-            union_set(x, y, parent, v_num);
+            union_sets(x, y, parent, v_num);
             // mst_edges[edges_counter].dest = next_edge.dest;
             // mst_edges[edges_counter].src = next_edge.src;
             // mst_edges[edges_counter].weight = next_edge.weight;
-            edges_counter++;
             sum += next_edge.weight;
 
-            if(print_mst)
+            if (print_mst)
+
                 cout << next_edge.src << " - " << next_edge.dest << " \t" << next_edge.weight << endl;
-            
+
             if (edges_counter == v_num - 1)
                 break;
+            edges_counter++;
         }
-
         i++;
     }
 
-
     if (!print_mst)
-    {   
+    {
         // delete [] parent;
         // delete [] edges;
         // delete [] mst_edges;
         return Graph(Matrix(nullptr, v_num, e_num = 0), List(v_num));
     }
     else
-    {   
+    {
         cout << "sum = " << sum << endl;
         // l.print();
         // int sum = 0;
@@ -294,46 +294,63 @@ Graph Algo::Kruskal_MST(GraphRep &g, int start_vertex, bool print_mst) {
         // cout << "sum = " << sum << endl;
         // delete [] parent;
         // delete [] edges;
-        
+
         // delete [] mst_edges;
         return Graph(Matrix(l), l);
     }
-
-
 }
 
-int Algo::find(int *parent, int i)
+// int Algo::find(int *parent, int i)
+// {
+//     return parent[i];
+// }
+
+// void Algo::union_set(int u, int v, int *parent, int v_num) {
+//     for(int i = 0; i < v_num; i++)
+//     {
+//         if(parent[i] == parent[v])
+//             parent[v] = parent[u];
+
+//     }
+// }
+
+int Algo::find_set(int *parent, int v)
 {
-    return parent[i];
+    if (v == parent[v])
+        return v;
+    return find_set(parent, parent[v]);
 }
 
-void Algo::union_set(int u, int v, int *parent, int v_num) {
-    for(int i = 0; i < v_num; i++)
-    {
-        if(parent[i] == parent[v])
-            parent[v] = parent[u];
-            
-    }
+void Algo::union_sets(int a, int b, int *parent, int v_num)
+{
+    a = find_set(parent, a);
+    b = find_set(parent, b);
+    if (a != b)
+        parent[b] = a;
 }
-
 
 void Algo::Bellman_Ford(GraphRep &g, int start_vertex, int end_vertex, bool print_sp)
 {
     int v_num = g.get_vertices_num();
     int e_num = g.get_edges_num();
 
+    if(end_vertex >= v_num)
+    {
+        cout << "Nie ma takiego wierzchołka" << endl;
+        return;
+    }
+
     int d[v_num];
     int p[v_num];
     Edge *edges = new Edge[e_num];
-
 
     int edge_index = 0;
     for (int i = 0; i < v_num; i++)
     {
         for (int j = i + 1; j < v_num; j++)
-        {   
+        {
             int weight = g.get_edge_weight(i, j);
-            if (i == j || weight <  0)
+            if (i == j || weight < 0)
                 continue;
             if (weight > 0)
             {
@@ -361,8 +378,7 @@ void Algo::Bellman_Ford(GraphRep &g, int start_vertex, int end_vertex, bool prin
             int v = edges[j].dest;
             int weight = edges[j].weight;
 
-
-            if(weight < 0 || u == v)
+            if (weight < 0 || u == v)
                 continue;
 
             if (d[u] != INT_MAX && d[u] + weight < d[v])
@@ -370,7 +386,7 @@ void Algo::Bellman_Ford(GraphRep &g, int start_vertex, int end_vertex, bool prin
                 d[v] = d[u] + weight;
                 p[v] = u;
             }
-        }   
+        }
     }
 
     for (int j = 0; j < e_num; j++)
@@ -388,6 +404,13 @@ void Algo::Bellman_Ford(GraphRep &g, int start_vertex, int end_vertex, bool prin
 
     if (!print_sp)
         return;
+    
+
+    if (d[end_vertex] == INT_MAX)
+    {
+        cout << "Nie ma ścieżki z " << start_vertex << " do " << end_vertex << endl;
+        return;
+    }
 
     cout << "Najkrótsza ścieżka z " << start_vertex << " do " << end_vertex << " wynosi: " << d[end_vertex] << endl;
     cout << "Ścieżka: ";
